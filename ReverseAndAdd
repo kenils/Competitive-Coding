@@ -1,0 +1,20 @@
+'''
+
+Write a program that takes number and gives the resulting palindrome (if one exists).
+If it took more than 1,000 iterations (additions) or yield a palindrome
+that is greater than 4,294,967,295, assume that no palindrome exist for the given number.
+
+'''
+
+n=196
+flag=0
+while(n<4294967295):
+    s=str(n)
+    s="".join(reversed(s))
+    n=n+int(s)
+    if(str(n)==str(n)[::-1]):
+        print(n)
+        flag=1
+        break
+if(flag==0):
+    print("No Palindrome exists")
