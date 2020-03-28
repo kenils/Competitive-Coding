@@ -1,0 +1,24 @@
+'''Chef has two positive integers A and B. He can tamper with them by choosing a digit in the decimal representation of 
+A and a digit in the decimal representation of B and swapping these digits. This operation may be performed at most once.
+Find the maximum possible sum of the resulting numbers which Chef can obtain '''
+
+t=int(input())
+for k in range(t):
+    t1=[]
+    t2=[]
+    a,b=map(int,input().strip().split())
+    c=a+b
+    l1=list(str(a))
+    l2=list(str(b))
+    for i in range(len(l1)):
+        for j in range(len(l2)):
+            t1=l1.copy()
+            t2=l2.copy()
+            t2[j],t1[i]=l1[i],l2[j]
+            s1=""
+            s1=s1.join(t1)
+            s2=""
+            s2=s2.join(t2)
+            if(int(s1)+int(s2)>=c):
+                c=int(s1)+int(s2)
+    print(c) 
