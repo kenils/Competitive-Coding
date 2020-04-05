@@ -1,0 +1,76 @@
+'''
+Sherlock and the Valid String
+https://www.hackerrank.com/challenges/sherlock-and-valid-string/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=strings
+'''
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the isValid function below.
+def check(c):
+    l=c.copy()
+    try:
+        l.remove(0)
+    except:
+        pass    
+    for i in range(1,len(l)):
+        if(l[i]!=l[i-1]):
+            return False
+    return True    
+
+
+def isValid(s):
+    l=[]
+    c=[0]*26
+    for i in range(len(s)):
+        index=ord(s[i])-97
+        c[index]+=1
+    n=len(c)
+    i=0
+    while(i<n):
+        if(c[i]==0):
+            del c[i]
+            n=n-1
+            continue
+        i+=1
+    flag=0
+    flag1=0    
+    for i in range(1,len(c)):
+        if(c[i]!=c[i-1]):
+            flag1=1
+    if(flag1==0):
+        return "YES"        
+            
+    for i in range(len(c)):
+        c[i]=c[i]-1
+        f=check(c)
+        c[i]=c[i]+1
+        if(f):
+            if(flag==0):
+                flag=1
+            elif(flag==1):
+                return "NO"    
+    if(flag==1):
+        return "YES"
+    else:
+        return "NO"    
+
+        
+
+
+    
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = isValid(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
