@@ -1,0 +1,49 @@
+'''
+The cost of stock on each day is given in an array A[] of size N. Find all the days on which you buy and sell the stock so that in between those days your profit is maximum.
+
+Input: 
+First line contains number of test cases T. First line of each test case contains an integer value N denoting the number of days, followed by an array of stock prices of N days. 
+
+Output:
+For each testcase, output all the days with profit in a single line. And if there is no profit then print "No Profit".
+
+Constraints:
+1 <= T <= 100
+2 <= N <= 103
+0 <= Ai <= 104
+
+Example
+Input:
+2
+7
+100 180 260 310 40 535 695
+10
+23 13 25 29 33 19 34 45 65 67
+
+Output:
+(0 3) (4 6)
+(1 4) (5 9)
+'''
+Solution:
+t=int(input())
+for z in range(t):
+    n=int(input())
+    a=list(map(int,input().strip().split()))
+    buy=[]
+    sell=[]
+    if(a[0]<a[1]):
+        buy.append(0)
+    for i in range(1,n-1):
+        if(a[i]<a[i-1] and a[i]<a[i+1]):
+            buy.append(i)
+        if(a[i]>a[i-1] and a[i]>a[i+1]):
+            sell.append(i)
+    if(a[-2]<a[-1]):
+        sell.append(n-1)
+    l=min(len(buy),len(sell))
+    if(l==0):
+        print("No Profit")
+        continue
+    for i in range(l):
+        print("(",buy[i]," ",sell[i],")",sep="",end=" ")
+    print()
