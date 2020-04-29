@@ -1,0 +1,30 @@
+#Possible combination of words using phone digits
+test=int(input()) #Number of testcases
+for testcases in range(test):
+    s=input() #input string of digits
+    d={                  #Declaring a hashmap which contains mapping of key-value pair
+        '0':"",
+        '1':"",
+        '2':"abc",
+        '3':"def",
+        '4':"ghi",
+        '5':"jkl",
+        '6':"mno",
+        '7':"pqrs",
+        '8':"tuv",
+        '9':"wxyz"
+    }
+    output=[""]
+    for i in range(len(s)):  #Traversign through input string
+        l=list(map(str,[item for item in d.get(s[i])])) #l=['a','b','c']
+        if(s[i]=='0' or s[i]=='1'):
+            continue
+        temp_list=[]
+        for j in range(len(output)): #Combining the output array with each char in respective key from hashmap
+            for k in range(len(l)):
+                temp=output[j]  
+                temp=temp+l[k] #Concatenate each element of output array with hashmap character of ith string index
+                temp_list.append(temp) 
+        output=temp_list.copy()
+    for i in range(len(output)):
+        print(output[i],end=" ")
