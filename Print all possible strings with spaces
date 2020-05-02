@@ -1,0 +1,47 @@
+'''
+Given a string str your task is to complete the function printSpaceString which takes only one argument the string str and  prints all possible strings that can be made by placing spaces (zero or one) in between them. 
+
+For eg .  for the string abc all valid strings will be
+                abc
+                ab c
+                a bc
+                a b c
+
+
+Input:
+The First line of input takes an integer T denoting the number of test cases . Then T test cases follow . Each line of test case contains a string str .
+
+Output:
+For each test case output the strings possible in a single line  separated by a "$" 
+
+'''
+Solution: #The Solution doesn't contain the driver function
+def toString(buff):
+    s=""
+    for item in buff:
+        if(item=='$'):
+            break
+        s+=item
+    return s    
+        
+
+
+def insertspace(buff,arr,i,j,n):  #i-> pointer for traversing through input string characters
+    if(i==n):                     #j-> pointer for traversing buffer 
+        buff[j]='$' #Termination Character
+        print(toString(buff),end="$")
+        return 
+    #Either put the character
+    buff[j]=arr[i]
+    insertspace(buff,arr,i+1,j+1,n)
+    #Either put space
+    buff[j]=' '
+    buff[j+1]=arr[i]
+    insertspace(buff,arr,i+1,j+2,n)
+    
+        
+def printSpace(arr):
+    n=len(arr)
+    buff=[0]*(2*n)#buffer to hold string containing 2n characters in worst case[n characters + n-1 spaces + 1 Termination character]
+    buff[0]=arr[0]#Copying First Character as it is
+    insertspace(buff,arr,1,1,n)
