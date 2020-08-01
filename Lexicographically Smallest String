@@ -1,0 +1,39 @@
+'''
+Given two integers N and K. 
+The task is to print the lexicographically smallest string of length N consisting of lower-case English alphabates such that the sum of the characters of the string equals to K where ‘a’ = 1, ‘b’ = 2, ‘c’ = 3, ….. and ‘z’ = 26.
+Input: N = 5, K = 42
+Output: aaamz
+“aaany”, “babmx”, “aablz” etc. are also valid strings
+but “aaamz” is the lexicographically smallest.
+
+Input: N = 3, K = 25
+Output: aaw
+
+
+'''
+#code
+n,k=map(int,input().strip().split())
+s=['a']*n
+k=k-n
+for i in range(n-1,-1,-1):
+    if(k==0):
+        break
+    if(k+1>=26):
+        k+=1
+        s[i]='z'
+        k-=26
+        continue
+    elif(k+1<26):
+        k+=1
+        s[i]=chr(96+k)
+        break
+        
+
+
+
+
+
+#Convert list of characters to string
+sc=""
+sc=sc.join(s)
+print(sc)
