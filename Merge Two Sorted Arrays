@@ -1,0 +1,17 @@
+arr1=list(map(int,input().strip().split()))
+arr2=list(map(int,input().strip().split()))
+m=len(arr1)
+n=len(arr2)
+for i in range(n-1,-1,-1): #Traverse the second array from end to start
+    last=arr1[m-1] #Store the last element of the first array
+    j=m-2
+    while(j>=0 and arr2[i]<arr1[j]): #Move arr1 elements to right which are greater than arr2[i]
+        arr1[j+1]=arr1[j]
+        j-=1
+    if(j!=m-2 or last>arr2[i]): #Check whether elements were moved
+        arr1[j+1]=arr2[i] #Put arr2[i] at appropriate position in arr1
+        arr2[i]=last      #Replace arr2[i] with last element
+        
+print(arr1)
+print(arr2)
+        
