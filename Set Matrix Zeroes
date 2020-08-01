@@ -1,0 +1,36 @@
+'''
+Given a m x n matrix, if an element is 0, set its entire row and column to 0
+
+Algorithm:
+Initialize firstRow and firstCol to false. These two variables will store the status of the first row and first column.
+Now use the first row and first column as your hash which stores the status of that row and column.
+Now iterate over the matrix and for every A[i][j] == 0, set A[i][0] = 0 and col[0][j] = 0.
+Now update the values of the matrix except first row and first column to 0 if A[i][0] = true or A[0][i] = true for A[i][j].
+Now update the values of the first row and first column.
+'''
+matrix=[[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+m=len(matrix)
+n=len(matrix[0])
+firstRow,firstCol=False,False
+for i in range(m):
+    if(matrix[i][0]==0):
+        firstCol=True
+for j in range(n):
+    if(matrix[0][j]==0):
+        firstRow=True
+for i in range(m):
+    for j in range(n):
+        if(matrix[i][j]==0):
+            matrix[i][0]=0
+            matrix[0][j]=0
+for i in range(1,m):
+    for j in range(1,n):
+        if(matrix[i][0]==0 or matrix[0][j]==0):
+            matrix[i][j]=0
+if(firstCol):
+    for i in range(m):
+        matrix[i][0]=0
+if(firstRow):
+    for j in range(n):
+        matrix[0][j]=0
+print(matrix)        
